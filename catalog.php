@@ -71,6 +71,12 @@ $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_
         <li><a href="client.php">PROFILE</a></li>
         <li><a class="dropdown-button" data-activates="dropdown1">YOUR CART<i class="material-icons right">shopping_cart</i></a></li>
         <li><a href="#"><i class="material-icons">search</i></a></li>
+		    <li>
+            <a id="toggle-search" href="#!">
+            <i class="large mdi-action-search">
+            </i>
+			      </a>
+        </li>
       </ul>
     </div>
   </nav>
