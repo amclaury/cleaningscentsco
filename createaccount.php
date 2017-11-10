@@ -118,6 +118,11 @@
         <li><a href="client.php">PROFILE</a></li>
         <li><a href="cart.php">YOUR CART</a></li>
         <li><a href="#"><i class="material-icons">search</i></a></li>
+	<li>
+		<a id="toggle-search" href="#!">
+		<i class="large mdi-action-search"></i>
+		</a>
+        </li>
       </ul>
 
 	  <ul id="nav-mobile" class="side-nav">
