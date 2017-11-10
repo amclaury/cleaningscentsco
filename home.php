@@ -110,6 +110,7 @@
     <div class="section">
 
       <!--   Icon Section   -->
+      <!--CARD 1-->
       <div class="row">
         <div class="col s12 m4">
         <div class="card">
@@ -118,11 +119,13 @@
           <a href="catalog.php" class="btn-floating halfway-fab waves-effect waves-light cyan"><i class="material-icons">chevron_right</i></a>
         </div>
         <div class="card-content">
-          <span class="card-title grey-text">Daily Deal</span>
+          <span class="card-title grey-text">Daily Dollar Savings</span>
           <p>View our specials on current products and save more money today!</p>
         </div>
       </div>
         </div>
+
+        <!--CARD 2-->
 
         <div class="col s12 m4">
           <div class="card">
@@ -137,6 +140,8 @@
       </div>
         </div>
 
+        <!--CARD 3-->
+
         <div class="col s12 m4">
         <div class="card">
         <div class="card-image">
@@ -149,6 +154,8 @@
         </div>
       </div>
       </div>
+
+      <!--FEATURED PRODUCT-->
 
     </div>
         <div class="section"></div>
