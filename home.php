@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,12 +20,8 @@
         <li><a href="admin.php">ADMIN</a></li>
         <li><a href="client.php">PROFILE</a></li>
         <li><a href="cart.php">YOUR CART</a></li>
-        <li><a href="#"><i class="material-icons">search</i></a></li>
-		    <li>
-            <a id="toggle-search" href="#!">
-            <i class="large mdi-action-search"></i>
-            </a>
-        </li>
+        <li><a href="#"><a id="toggle-search" href="#!"><i class="material-icons"><i class="large mdi-action-search">search</i></i></a></a></li>
+
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
@@ -33,6 +30,17 @@
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
+  
+  <div id="search" class="row white-text grey darken-3" >
+
+    <div class="container">
+        <form method="get" action="https://sulley.cah.ucf.edu/~dig4530c_group06/catalog.php">
+            <input class="form-control" type="text" placeholder="Search ..." name="q"></input>
+
+            <input type="hidden" value="makoframework.com" name="as_sitesearch"></input>
+        </form>
+    </div>
+</div>
 
     <div class="slider">
     <ul class="slides">
@@ -145,43 +153,7 @@
     </div>
         <div class="section"></div>
         <h4 class="header indigo-text text-lighten-3">Featured Product</h4>
-        <?php
-        $username = "ma826048";
-        $password = "Tohru375!";
-
-        // Create connection
-        $connection = mysqli_connect("localhost" , "$username" , "$password", "ma826048");
-        if (!$connection) {
-          die('Could not connect: ' . mysqli_error($connection));
-        }
-
-        mysqli_select_db($connection,"ma826048");
-        $sql="SELECT * FROM products WHERE ProductID = 0001";
-        $result = mysqli_query($connection,$sql);
-
-        
-        while($row = mysqli_fetch_array($result)) {
-        echo "<div class='card horizontal'>";
-        echo "<div class='card-image'>" . "<img alt='lavendersoap' src ='" . $row["Product Image"] . "'>" . "</div>";
-        echo "<div class='card-stacked'>";
-        echo "<div class='card-content'>";
-        echo "<span class='card-title grey-text'>" . $row["Product Name"] . "</span>";
-        echo "<p>" . "&#36;" . $row["Price"] . "</p>";
-        echo "<br />";
-        echo "<p>" . $row["Description"] . "</p>";
-        echo "</div>";
-        echo "<div class='card-action'>" . "<a href='catalog.php'>View More</a>" . "</div>";
-        /*echo "<td>" . $row['Product Name'] . "</td>";
-        echo "<td>" . $row['Price'] . "</td>";
-        echo "<td>" . "<img src ='" . $row["Product Image"] . "'>" . "</td>";*/
-        echo "</div>";
-        echo "</div>";
-        echo "<br />";
-        }
-      
-        mysqli_close($connection);
-        ?>
-    <br><br>
+        <div class='card horizontal'><div class='card-image'><img alt='lavendersoap' src ='img/soap-2726387_960_720.jpg'></div><div class='card-stacked'><div class='card-content'><span class='card-title grey-text'>Lavender Bar Soap</span><p>&#36;4</p><br /><p>Relaxing floral scent</p></div><div class='card-action'><a href='catalog.php'>View More</a></div></div></div><br />    <br><br>
   </div>
 </div>
 
@@ -223,7 +195,9 @@
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-  <script src="js/init.js"></script>
+  <script src="js/init.js">
+  </script>
 
+  
   </body>
 </html>
