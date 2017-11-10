@@ -3,16 +3,11 @@
 
     $('.button-collapse').sideNav();
 
-    $(".dropdown-button").dropdown();
-
-    $('ul.tabs').tabs();
-
-    $('.collapsible').collapsible();
-
     $('.slider').slider({
     	indicators: false,
     	height: 500
     });
+	
 
     /*$('.carousel.carousel-slider').carousel
     	({
@@ -25,7 +20,7 @@
     $('.carousel.carousel-slider').carousel('next');
   }, 5000);*/
   }); 
- 
+  
   // Toggle search
 
     $('a#toggle-search').click(function()
