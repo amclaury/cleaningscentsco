@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <link href="css/styles.css" type="text/css" rel="stylesheet"/>
+  <link rel="shortcut icon" href="images/favicon.ico" /> 
   
   <!-- SEARCH -->
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/minified/jquery-ui.min.css" type="text/css" />

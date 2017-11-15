@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include("includes/db_connect.php");
+    include("db_connect.php");
 
     $emailerror = $nameerror = $passworderror = "";
     $email = $name = $password = $password1 = $password2 = $address = $city = $state = $zip = $country = $phone = $cardnumber = "" ;
@@ -61,9 +61,12 @@
 	  $city = $_POST['city'];
 	  $state = $_POST['state'];
 	  $zip = $_POST['zip'];
+	  $country = $_POST['country'];
+	  $phone = $_POST['phone'];
+	  $cardnumber = $_POST['cardnumber'];
 
       $sql = "SELECT * FROM users WHERE email='".$email."'LIMIT 1";
-      $result = mysqli_query($conn, $sql);
+      $result = mysqli_query($connection, $sql);
       $row = mysqli_fetch_row($result);
 
       if(mysqli_num_rows($result) ==1){
@@ -75,8 +78,9 @@
 					$password = sha1($password1); //ENCRYPTION
 				}
 		else { $errorMsg .= "Your passwords do not match. "; }*/
-        $sql = "INSERT INTO users (email, password, name, address, street, state, zip) VALUES ('$email','$password', '$name', '$address', '$city', '$state', '$zip')";
-        mysqli_query($conn, $sql);
+		$sql = "INSERT INTO users (email, name, password) VALUES ('$email', '$name', '$password')";
+        /*$sql = "INSERT INTO users (email, password, name, street, city, state, zip, country, phone, cardnumber, privilege) VALUES ('$email', '$password', '$name', '$address', '$city', '$state', '$zip', '$country', '$phone', '$cardnumber', 'user')";*/
+        mysqli_query($connection, $sql);
         $acc_result= "Account successfully created. You will be directed to the tracker page in 5 seconds.<br/><br/>Click <a href='tracker.php'>here</a> to go to your tracker page if you are not redirected automatically.";
 
         $email = $name = $password = $password1 = $password2 = $address = $city = $state = $zip = $country = $phone = $cardnumber = "" ;
@@ -90,13 +94,14 @@
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Cleaning Scents Home - Mahogany Breaux</title>
+  <title>Cleaning Scents Company - Create Account</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel="icon" type="image/png" href="img/favicon.ico" />
   <link href="css/styles.css" type="text/css" rel="stylesheet"/>  
   
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -111,62 +116,20 @@
 </head>
 <body>
   <nav class="cyan accent-4">
-    <div class="nav-wrapper container"><a id="logo-container" href="home.php" class="brand-logo">Cleaning Scents</a>
+    <div class="nav-wrapper container80"><a id="logo-container" href="home.php" class="brand-logo"><img class="responsive-img pad-extra" alt="logo" src="img/wordmark.png" <img style="width:378x; height:68px;"></a>
       <ul class="right hide-on-med-and-down">
+        <li><a href="home.php">HOME</a></li>
         <li><a href="catalog.php">SHOP</a></li>
-        <li><a href="admin.php">ADMIN</a></li>
         <li><a href="client.php">PROFILE</a></li>
-        <li><a href="cart.php">YOUR CART</a></li>
-        <li><a href="#"><i class="material-icons">search</i></a></li>
-	<li>
-		<a id="toggle-search" href="#!">
-		<i class="large mdi-action-search"></i>
-		</a>
-        </li>
-      </ul>
+        <li><a href="cart.php"><i class="material-icons"><i class="material-icons">shopping_cart</i></i></a></li>
+        <li><a href="#"><a id="toggle-search" href="#!"><i class="material-icons"><i class="large mdi-action-search">search</i></i></a></a></li>
+        <li><a href="login.php">LOGIN</a></li>
 
-	  <ul id="nav-mobile" class="side-nav">
-	    <li><a href="catalog.php">SHOP</a></li>
-	    <li><a href="admin.php">ADMIN</a></li>
-        <li><a href="client.php">PROFILE</a></li>
-		<li><a href="cart.php">CART</a></li>
-	 </ul>
+      </ul>
 		
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-
-    <div class="slider">
-    <ul class="slides">
-      <li>
-        <img src="img/micro-fiber-cloth-2716116_960_720.jpg" class="slideimg" alt="towels"> <!-- random image -->
-        <div class="caption center-align">
-          <h3>Warm and Fuzzy!</h3>
-          <h5 class="light grey-text text-lighten-3">Our laundry care does wonders.</h5>
-          <div class="section">
-          <a class="btn waves-effect white grey-text darken-text-2">shop</a>
-          </div>
-        </div>
-      </li>
-      <li>
-        <img src="img/gerbera-611568_960_720.jpg" class="slideimg" alt="flower"> <!-- random image -->
-
-        <div class="caption left-align">
-          <h3>Floral Finds</h3>
-          <h5 class="light grey-text text-lighten-3">Browse our floral scent collection today!</h5>
-          <a class="btn waves-effect white grey-text darken-text-2">shop</a>
-        </div>
-      </li>
-      <li>
-        <img src="img/sponge-2541251_960_720.jpg" class="slideimg" alt="sponge"> <!-- random image -->
-        <div class="caption right-align">
-          <h3>Scrub Away Your Fears!</h3>
-          <h5 class="light grey-text text-lighten-3">With our new multi-purpose cleaner.</h5>
-          <a class="btn waves-effect white grey-text darken-text-2">shop</a>
-        </div>
-      </li>
-    </ul>
-  </div>
  <!-- <div class="carousel carousel-slider">
       <div class="carousel-fixed-item center">
       <a href="catalog.html" class="btn waves-effect white grey-text darken-text-2">button</a>
@@ -190,7 +153,7 @@
       <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
     </ul>
   </div>-->
-      <h3 class="header center indigo-text text-lighten-3">Welcome Home!</h3>
+      <h3 class="header center indigo-text text-lighten-3">Register Account</h3>
       <div class="row center">
 	  
 	            <div class="row">
@@ -216,7 +179,7 @@
                 </div>
 
                 <div class="input-field col s6">
-                  <input id="password2" type="password" class="validate" name="password2" size="15" maxlength="50" value="<?php echo $password2; ?>"><span class="error"><?php echo $passworderror;?></span>
+                  <input id="password2" type="password" class="validate" name="password2" maxlength="20" value="<?php echo $password2; ?>"><span class="error"><?php echo $passworderror;?></span>
                   <label for="password2">Confirm Password</label>
                 </div>
               </div>
@@ -243,6 +206,25 @@
                   <input placeholder="#####" id="zip" type="text" name="zip" size="15" maxlength="50" value="<?php echo $zip; ?>"><span class="error"><?php echo $nameerror;?></span>
                   <label for="zip">ZIP Code</label>
                 </div>
+              </div>	
+
+			<div class="row">
+                <div class="input-field col s8">
+                  <input id="country" type="text" name="country" maxlength="40" value="<?php echo $country; ?>"><span class="error"><?php echo $nameerror;?></span>
+                  <label for="country">Country</label>
+                </div>
+
+                <div class="input-field col s4">
+                  <input id="phone" type="text" name="phone" size="15" maxlength="13" value="<?php echo $phone; ?>"><span class="error"><?php echo $nameerror;?></span>
+                  <label for="phone">Phone Number</label>
+                </div>
+			</div>
+				
+			<div class="row">
+				<div class="input-field col s12">
+                  <input id="cardnumber" type="password" name="cardnumber" size="15" maxlength="16" value="<?php echo $cardnumber; ?>"><span class="error"><?php echo $nameerror;?></span>
+                  <label for=cardnumber">Credit Card Number</label>
+                </div>
               </div>			  
 			  
               <button class="btn waves-effect waves-light blue lighten-1 right" type="submit" name="submit" value="submit">Register
@@ -254,34 +236,7 @@
         <?php /*}*/ ?>
     </div>
 	  
-	<form action = "createaccount" action = "" method = "post" name = "crtacct" class = "bl-even" style = "width: 50%; margin: 15px auto 15px auto; display: block;">
-		<h1 style = "color: white; text-align: center;">Create your Treehouse Account!</h1>
-		<div id = "form">
-			<p>Email:</p>
-			<input type = "text" name = "email"/></br> 
-			<p>Name:</p>
-			<input type = "text" name = "name"/></br> 
-			<p>Password:</p>
-			<input type = "password" name = "password1"/></br> 
-			<p>Confirm Password:</p>
-			<input type = "password" name = "password2"/></br></br>
-			<p>Street Address:</p>
-			<input type = "text" name = "street"/></br>
-			<p>City:</p>
-			<input type = "text" name = "city"/></br>
-			<p>State:</p>
-			<input type = "text" name = "state"/></br>
-			<p>ZIP Code:</p>
-			<input type = "text" name = "zip"/></br>			
-			<p>Country:</p>
-			<input type = "text" name = "country"/></br> 
-			<p>Phone Number:</p>
-			<input type = "text" name = "phone"/></br>
-			<p>Card Number:</p>
-			<input type = "password" name = "cardnumber"/></br>			
-			<input type = "submit" value = "Create Account" name = "crtacct" id = "submit"/>
-		</div>
-	</form>	
+	
       </div>
       <br><br>
 
@@ -289,56 +244,7 @@
   </div>
 
 
-  <div class="container">
-    <div class="section">
-
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m4">
-        <div class="card">
-        <div class="card-image">
-          <img src="img/spray-bottle-2754171_960_720.jpg" alt="sprayer">
-          <a href="catalog.php" class="btn-floating halfway-fab waves-effect waves-light cyan"><i class="material-icons">chevron_right</i></a>
-        </div>
-        <div class="card-content">
-          <span class="card-title grey-text">Daily Deal</span>
-          <p>View our specials on current products and save more money today!</p>
-        </div>
-      </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="card">
-        <div class="card-image">
-          <img src="img/soap-2726400__340.jpg" alt="applesoap">
-          <a href="catalog.php" class="btn-floating halfway-fab waves-effect waves-light cyan"><i class="material-icons">chevron_right</i></a>
-        </div>
-        <div class="card-content">
-          <span class="card-title grey-text">Exclusive Scents</span>
-          <p>Our five scent profiles consist of floral, wood, herb, berry, and citrus.</p>
-        </div>
-      </div>
-        </div>
-
-        <div class="col s12 m4">
-        <div class="card">
-        <div class="card-image">
-          <img src="img/water-drop-2670118__340.jpg" alt="water">
-          <a href="catalog.php" class="btn-floating halfway-fab waves-effect waves-light cyan"><i class="material-icons">chevron_right</i></a>
-        </div>
-        <div class="card-content">
-          <span class="card-title grey-text">Safe Ingredients</span>
-          <p>Our ingredients include only the safest options for you and your home.</p>
-        </div>
-      </div>
-      </div>
-
-    </div>
-        <div class="section"></div>
-        <h4 class="header indigo-text text-lighten-3">Featured Product</h4>
-        <div class='card horizontal'><div class='card-image'><img alt='lavendersoap' src ='img/soap-2726387_960_720.jpg'></div><div class='card-stacked'><div class='card-content'><span class='card-title grey-text'>Lavender Bar Soap</span><p>&#36;4</p><br /><p>Relaxing floral scent</p></div><div class='card-action'><a href='catalog.php'>View More</a></div></div></div><br />    <br><br>
-  </div>
-</div>
+  
 
   <footer class="page-footer indigo lighten-3">
     <div class="container">

@@ -3,31 +3,20 @@ session_start();
 include_once("connect.php");
 ?>
 <!DOCTYPE html>
-<html>
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Cleaning Scents Catalog - DIG 4530c Group 6</title>
+<title>Cleaning Scents Company - Cart</title>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-<link href="css/styles.css" rel="stylesheet" type="text/css">
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
+<link rel="icon" type="image/png" href="img/favicon.ico" />
+<link href="css/styles.css" rel="stylesheet" type="text/css"></head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109141340-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-109141340-1');
-</script>
-
-</head>
 
 <body>
-
+  <!-- CART DROPDOWN -->
   <ul id="dropdown1" class="dropdown-content">
     <li>
       <?php
@@ -36,20 +25,20 @@ include_once("connect.php");
       echo '<div class="cart-view-table-front" id="view-cart">';
       echo '<h4 class="indigo-text text-lighten-3">Your Shopping Cart</h4>';
       echo '<form method="post" action="cart_update.php">';
-      echo '<table width="100%"  cellpadding="6" cellspacing="0">';
+      echo '<table>';
       echo '<tbody>';
       $total =0;
       $b = 0;
       foreach ($_SESSION["cart_test"] as $cart_itm)
       {
-      $product_img = $cart_itm["product_img_name"];
+      $product_img_name = $cart_itm["product_img_name"];
       $product_name = $cart_itm["product_name"];
       $product_qty = $cart_itm["product_qty"];
       $product_price = $cart_itm["product_price"];
       $product_code = $cart_itm["product_code"];
       $bg_color = ($b++%2==1) ? 'odd' : 'even'; //zebra stripe
       echo '<tr class="'.$bg_color.'">';
-      echo '<td>'.'<img alt="productimage" src='.'"img/'. $product_img_name . '">' . '</td>';
+      echo '<td>'.'<img alt="productimage" class="img_thumb" src ="'.$product_img_name.'">' . '</td>';
       echo '<td>'.$product_name.'</td>';
       echo '<td>Qty <input type="text" size="2" maxlength="2" name="product_qty['.$product_code.']" value="'.$product_qty.'" /></td>';
       echo '<td><input type="checkbox" id="remove" name="remove_code[]" value="'.$product_code.'" /><label for="remove">Remove</label></td>';
@@ -72,36 +61,51 @@ include_once("connect.php");
     </li>
   </ul>
 
+  <!-- NAVIGATION -->
   <nav class="cyan accent-4">
-    <div class="nav-wrapper container"><a id="logo-container" href="home.php" class="brand-logo">Cleaning Scents</a>
+    <div class="nav-wrapper container80"><a id="logo-container" href="home.php" class="brand-logo"><img class="responsive-img pad-extra" alt="logo" src="img/wordmark.png" height="50" width="250"></a>
       <ul class="right hide-on-med-and-down">
+        <li><a href="home.php">HOME</a></li>
         <li><a href="catalog.php">SHOP</a></li>
-        <li><a href="admin.php">ADMIN</a></li>
         <li><a href="client.php">PROFILE</a></li>
-        <li><a class="dropdown-button" data-activates="dropdown1">YOUR CART<i class="material-icons right">shopping_cart</i></a></li>
-        <li><a href="#"><i class="material-icons">search</i></a></li>
-	<li>
-			<a id="toggle-search" href="#!">
-			<i class="large mdi-action-search"></i>
-			</a>
-        </li>
+        <li><a class="dropdown-button" data-activates="dropdown1"><i class="material-icons right">shopping_cart</i></a></li>
+         <li><a id="toggle-search" href="#!"><i class="material-icons"><i class="large mdi-action-search">search</i></i></a></li>
+         <li><a href="login.php">LOGIN</a></li>
       </ul>
-	  
-	  	  <ul id="nav-mobile" class="side-nav">
-	    <li><a href="catalog.php">SHOP</a></li>
-	    <li><a href="admin.php">ADMIN</a></li>
-        <li><a href="client.php">PROFILE</a></li>
-		<li><a href="cart.php">CART</a></li>
-	 </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
+  
+  <!-- SEARCH FUNCTION -->
+  <div id="search" class="row white-text grey darken-3" >
+
+    <div class="container">
+        <form method="get" action="https://sulley.cah.ucf.edu/~dig4530c_group06/catalog.php">
+            <input class="form-control" type="text" placeholder="Search ..." name="q">
+
+            <input type="hidden" value="makoframework.com" name="as_sitesearch">
+        </form>
+    </div>
+</div>
 
 
-<h4 class="header left indigo-text text-lighten-3">Your Cart</h4>
+
+<!-- CART DISPLAY -->
+<div class="section"></div>
+<div class="row">
+<div class="col s12 m2"></div>
+<div class="col s12 m8">
+<h4 class="indigo-text text-lighten-3">Your Cart</h4>
+</div>
+<div class="section"></div>
+</div>
 <div class="cart-view-table-back">
 <form method="post" action="cart_update.php">
-<table width="100%"  cellpadding="6" cellspacing="0"><thead><tr><th>Image</th><th>Name</th><th>Quantity</th><th>Price</th><th>Total</th><th>Remove</th></tr></thead>
+<table><thead><tr><th>Product</th><th></th><th>Quantity</th><th>Price</th><th>Total</th><th></th></tr></thead>
   <tbody>
   <?php
   if(isset($_SESSION["cart_test"])) //check session var
@@ -120,13 +124,13 @@ include_once("connect.php");
       
         $bg_color = ($b++%2==1) ? 'odd' : 'even'; //class for zebra stripe 
         echo '<tr class="'.$bg_color.'">';
-        echo '<td>'.'<div class="product-thumb">'.$product_img_name.'</div>'.'</td>';
+        echo '<td>'.'<div class="product-thumb">'.'<img alt="productimage" class="img_thumb" src ="'.$product_img_name.'">'.'</div>'.'</td>';
         echo '<td>'.$product_name.'</td>';
         echo '<td><input type="text" size="2" maxlength="2" name="product_qty['.$product_code.']" value="'.$product_qty.'" /></td>';
         echo '<td>'.$currency.$product_price.'</td>';
         echo '<td>'.$currency.$subtotal.'</td>';
-        echo '<td><input type="checkbox" name="remove_code[]" value="'.$product_code.'" /></td>';
-            echo '</tr>';
+        echo '<td><input type="checkbox" name="remove_code[]" value="'.$product_code.'" /><label for="remove">Remove</label></td>';
+        echo '</tr>';
       $total = ($total + $subtotal); //add subtotal to total var
         }
     
@@ -144,8 +148,8 @@ include_once("connect.php");
     $shipping_cost = ($shipping_cost)?'Shipping Cost : '.$currency. sprintf("%01.2f", $shipping_cost).'<br />':'';
   }
     ?>
-    <tr><td colspan="5"><span style="float:right;text-align: right;"><?php echo $shipping_cost. $list_tax; ?>Amount Payable : <?php echo sprintf("%01.2f", $grand_total);?></span></td></tr>
-    <tr><td colspan="5"><a href="catalog_test.php" class="button">Add More Items</a><button type="submit">Update</button></td></tr>
+    <tr><td colspan="6"><span style="float:right;text-align: right;"><?php echo $shipping_cost. $list_tax; ?>Amount Payable : <?php echo sprintf("%01.2f", $grand_total);?></span></td></tr>
+    <tr><td colspan="6"><a href="checkout.php" class="button">Checkout</a><a href="catalog.php" class="button">Add More Items</a><button type="submit">Update</button></td></tr>
   </tbody>
 </table>
 <input type="hidden" name="return_url" value="<?php 
@@ -153,7 +157,10 @@ $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_
 echo $current_url; ?>" />
 </form>
 </div>
+<div class="section"></div>
 
+
+<!-- FOOTER -->
   <footer class="page-footer indigo lighten-3">
     <div class="container">
       <div class="row">
@@ -166,6 +173,7 @@ echo $current_url; ?>" />
         <div class="col l3 s12">
           <h5 class="white-text">Links</h5>
           <ul>
+            <li><a class="white-text" href="home.php">Home</a></li>
             <li><a class="white-text" href="catalog.php">Shop</a></li>
             <li><a class="white-text" href="admin.php">Admin</a></li>
             <li><a class="white-text" href="client.php">Profile</a></li>
@@ -175,17 +183,21 @@ echo $current_url; ?>" />
         <div class="col l3 s12">
           <h5 class="white-text">Help</h5>
           <ul>
-            <li><a class="white-text" href="#!">Contact</a></li>
-            <li><a class="white-text" href="#!">FAQs</a></li>
+            <li><a class="white-text" href="policies.php">Contact</a></li>
+            <li><a class="white-text" href="policies.php">Our Policies</a></li>
           </ul>
         </div>
       </div>
     </div>
     <div class="footer-copyright">
       <div class="container">
-      <p>Designed by DIG 4530c Group 6</p>
+      <p>Designed by: dig4530c_group06</p>
       </div>
     </div>
   </footer>
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<script src="js/init.js"></script>
 </body>
 </html>

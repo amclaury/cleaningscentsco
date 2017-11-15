@@ -1,30 +1,43 @@
+<?php
+    session_start();
+    include("db_connect.php");
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST"){
+        $name = $_POST['name'];
+        $password = $_POST['password'];
+        $password = sha1($password);
+
+        $sql = "SELECT * FROM users WHERE name='" . $name . "' AND password='".$password."' LIMIT 1";
+        $result = mysqli_query($connection, $sql);
+        if (mysqli_num_rows($result) == 1){
+          $row = mysqli_fetch_row($result);
+          $_SESSION['logged_in'] = TRUE;
+          $_SESSION['logged_in_user'] = $name;
+        }
+      }
+    if(isset($_SESSION["logged_in"])){
+      header("Location: client.php");
+    }
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Cleaning Scents Company - Admin</title>
+  <title>Cleaning Scents Company - Login</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel="icon" type="image/png" href="img/favicon.ico" />
   <link href="css/styles.css" type="text/css" rel="stylesheet"/>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109141340-1"></script>
-  
     <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109141340-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-109141340-1');
-</script>
-
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109141340-1"></script> 
 </head>
 <body>
+
   <nav class="cyan accent-4">
     <div class="nav-wrapper container80"><a id="logo-container" href="home.php" class="brand-logo"><img class="responsive-img pad-extra" alt="logo" src="img/wordmark.png" height="50" width="250"></a>
       <ul class="right hide-on-med-and-down">
@@ -54,91 +67,49 @@
         </form>
     </div>
 </div>
-
-
-
-  <div class="section no-pad-bot" id="index-banner">
-    <div class="container">
+  
+        <div class="container">
       <br><br>
-      <!--<div class="fixed-action-btn horizontal click-to-toggle">
-    <a class="btn-floating btn-large red">
-      HELP
-    </a>
-    <ul>
-      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-      <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-      <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-    </ul>
-  </div>-->
-    <h3 class="header indigo-text text-lighten-3">Administrator Login</h3>
-
-      <div class="row">
+        <h3 class="header indigo-text text-lighten-3">Login</h3>
+		
+		      <div class="row">
         <div class="col s12 m7">
           <div class="card">
-            <div class="card-content">
+            <div class="card-content-xvx">
                     <div class="row">
-    <form class="col s12">
+    <form class="col s12" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
       <div class="row">
         <div class="input-field col s12">
-          <input id="username" type="text" class="validate">
-          <label for="username">Username</label>
+          <input id="name" type="text" class="validate" name="name">
+          <label for="name">Username</label>
         </div>
       </div>
 
         <div class="row">
           <div class="input-field col s12">
-          <input id="password" type="password" class="validate">
+          <input id="password" type="password" class="validate" name="password">
           <label for="password">Password</label>
         </div>
       </div>
-    </form>
   </div>
             </div>
-            <div class="card-action">
-              <a href="office.php">Login</a>
-            </div>
+		      <button class="btn waves-effect waves-light indigo lighten-3 right" type="submit" name="submit">Login
+            </button>
+			</form>
+				
+		  <div class="col s5">
+          <p>Don't have an account? <a href="createaccount.php">Register here</a>.</p>
+      </div>				
           </div>
+		  
         </div>
       </div>
-
-<!--    <div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s6">
-          <input id="username" type="text" class="validate">
-          <label for="username">Username</label>
-        </div>
-        <div class="input-field col s6">
-        </div>
-      </div>
-
-        <div class="row">
-          <div class="input-field col s6">
-          <input id="password" type="text" class="validate">
-          <label for="password">Password</label>
-        </div>
-        <div class="input-field col s6">
-        </div>
-      </div>
-    </form>
-  </div>-->
-
+		</div>
   </div>
-</div>
-
-
-  <div class="container">
-    <div class="section">
-
-      <!--   Icon Section   -->
-      <div class="row">
-
-
-    </div>
-    <br><br>
+		<br><br>
   </div>
-</div>
+ 
+	
 
   <footer class="page-footer indigo lighten-3">
     <div class="container">
@@ -163,7 +134,7 @@
           <h5 class="white-text">Help</h5>
           <ul>
             <li><a class="white-text" href="#!">Contact</a></li>
-            <li><a class="white-text" href="#!">FAQs</a></li>
+            <li><a class="white-text" href="policies.php">Our Policies</a></li>
           </ul>
         </div>
       </div>
@@ -179,7 +150,9 @@
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-  <script src="js/init.js"></script>
+  <script src="js/init.js">
+  </script>
 
-  </body>
+  
+</body>
 </html>

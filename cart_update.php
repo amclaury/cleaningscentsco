@@ -13,16 +13,17 @@ if(isset($_POST["type"]) && $_POST["type"]=='add' && $_POST["product_qty"]>0)
 	unset($new_product['return_url']); 
 	
  	//we need to get product name and price from database.
-    $statement = $mysqli->prepare("SELECT product_name, price FROM products WHERE product_code=? LIMIT 1");
+    $statement = $mysqli->prepare("SELECT product_name, price, product_img_name FROM products WHERE product_code=? LIMIT 1");
     $statement->bind_param('s', $new_product['product_code']);
     $statement->execute();
-    $statement->bind_result($product_name, $price);
+    $statement->bind_result($product_name, $price, $product_img_name);
 	
 	while($statement->fetch()){
 		
 		//fetch product name, price from db and add to new_product array
         $new_product["product_name"] = $product_name; 
         $new_product["product_price"] = $price;
+        $new_product["product_img_name"] = $product_img_name;
         
         if(isset($_SESSION["cart_test"])){  //if session var already exist
             if(isset($_SESSION["cart_test"][$new_product['product_code']])) //check item exist in products array

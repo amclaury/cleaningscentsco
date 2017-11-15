@@ -5,8 +5,7 @@ $db_password = 'knights4321!';
 $db_name = 'dig4530c_group06';
 $db_host = 'localhost';
 $shipping_cost      = 1.50; //shipping cost
-$taxes              = array( //List your Taxes percent here.
-                            'VAT' => 12, 
+$taxes              = array( //List your Taxes percent here. 
                             'Service Tax' => 5
                             );						
 //connect to MySql						

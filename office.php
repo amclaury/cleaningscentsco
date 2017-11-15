@@ -10,14 +10,15 @@ $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Cleaning Scents Company - Catalog</title>
+<title>Cleaning Scents Company - Back Office</title>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 <link rel="icon" type="image/png" href="img/favicon.ico" />
 <link href="css/styles.css" rel="stylesheet" type="text/css">
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109141340-1"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109141340-1"></script> 
 </head>
 <body>
 
@@ -97,13 +98,49 @@ $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_
     </div>
 </div>
 
+<div class="section"></div>
+<div class="row">
+<div class="col s12 m2"></div>
+<div class="col s12 m8">
+  <h3 class="header indigo-text text-lighten-3">Add Product</h3>
+  				<form action="upload.php" method="post" enctype="multipart/form-data" class="bl-even">
+			<tr>
+				<td id="line1"> Name:</td>
+				<td><input type="text" name="Name"></td>
+				<br>
+				<br>
+			</tr>
+			<tr>
+				<td id="line1"> Price: </td>
+				<td><input type="text" name="Price"></td>
+			</tr>
+			<tr>
+					<td id="line1"> Select image to upload:</td>
+					<td><input type="file" name="uploadedfile"></td>
+					<br><br>
+			</tr>
+			<tr>
+					<td id="line1">Description:</td>
+					<td><textarea rows=10 cols=75 name="description"></textarea></td>
+					<br><br>
+			</tr>
+
+			<tr>	<td></td>		
+					<td><input type="submit" value="Add Product" name="submit"></td>
+			</tr>
+		</table>
+		</form>
+</div>
+<div class="col s2"></div>
+</div>
+<br><br>
+
 
 <div class="section"></div>
 <div class="row">
 <div class="col s12 m2"></div>
 <div class="col s12 m8">
-  <h3 class="header indigo-text text-lighten-3">Products</h3>
-  <p class="header light">Need a clean home with its own unique flair? Look no further than the Cleaning Scents Company. We give a little boost to everyday living with our fresh, scented cleaning supplies. Each home using our products can expect a high-quality experience.</p>
+  <h3 class="header indigo-text text-lighten-3">Delete Product</h3>
   <p class="header light"></p>
 </div>
 <div class="col s2"></div>
@@ -143,7 +180,7 @@ $test_item .= <<<EOT
   <input type="hidden" name="product_code" value="{$obj->product_code}" />
   <input type="hidden" name="type" value="add" />
   <input type="hidden" name="return_url" value="{$current_url}" />
-  <div class="center-align"><button type="submit" class="add_to_cart">Add to Cart</button></div>
+  <div class="center-align"><button type="submit" class="add_to_cart">Delete</button></div>
   </div>
   </form>
   </li>
