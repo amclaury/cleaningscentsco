@@ -23,9 +23,9 @@
           $_SESSION['logged_in_user'] = $name;
         }
       }
-    /*if(isset($_SESSION["logged_in"])){
+    if(isset($_SESSION["logged_in"])){
       header("Location: client.php");
-    }*/
+    }
 
     function test_input($data)
     {
@@ -86,7 +86,6 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <link href="css/styles.css" type="text/css" rel="stylesheet"/>
   <link rel="icon" type="image/png" href="img/favicon.ico" />
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109141340-1"></script>
   
   <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109141340-1"></script>
@@ -219,7 +218,7 @@
                   <label for="phone">Phone Number</label>
                 </div>     
               </div>
-					<div colspan="5"><a href="confirm.php" class="button">Submit</a>
+					<div colspan="5"><button type="submit">Submit</button>
 					<a href="checkout.php" class="button">Reset</a></div>
           </form>
           </div>
@@ -248,7 +247,7 @@
                   <label for="zip">Zip Code</label>
                 </div>                                            
               </div>
-					<div colspan="5"><a href="confirm.php" class="button">Submit</a>
+					<div colspan="5"><button type="submit">Submit</button>
 					<a href="checkout.php" class="button">Reset</a></div>
           </form>
           </div>
@@ -336,7 +335,7 @@
 				<div class="row"><div colspan="5">
 				<a href="https://www.paypal.com/signin?country.x=US&locale.x=en_US" target="_blank" class="button">PayPal</a></div></div>  
 					
-					<div colspan="5"><a href="confirm.php" class="button">Submit</a>
+					<div colspan="5"><button type="submit">Submit</button>
 					<a href="checkout.php" class="button">Reset</a></div>
             </form>            
 			</li>
@@ -365,7 +364,7 @@
                 <label for="password">Password</label>
               </div>
             </div>
-					<div colspan="5"><a href="confirm.php" class="button">Submit</a>
+					<div colspan="5"><button type="submit">Submit</button>
 					<a href="checkout.php" class="button">Reset</a></div>	
 				</form>
 			</li>
@@ -395,7 +394,7 @@
                   <label for="phone">Phone Number</label>
                 </div>     
               </div>
-					<div colspan="5"><a href="confirm.php" class="button">Submit</a>
+					<div colspan="5"><button type="submit">Submit</button>
 					<a href="checkout.php" class="button">Reset</a></div>
           </form>
           </div>
@@ -428,7 +427,7 @@
                   <label for="zip">Zip Code</label>
                 </div>                                            
               </div>
-					<div colspan="5"><a href="confirm.php" class="button">Submit</a>
+					<div colspan="5"><button type="submit">Submit</button>
 					<a href="checkout.php" class="button">Reset</a></div>
           </form>
           </div>
@@ -502,7 +501,7 @@ echo $current_url; ?>" />
 			  	<div class="row"><div colspan="5">
 				<a href="https://www.paypal.com/signin?country.x=US&locale.x=en_US" target="_blank" class="button">PayPal</a></div></div>
   					
-					<div colspan="5"><a href="confirm.php" class="button">Submit</a>
+					<div colspan="5"><button type="submit">Submit</button>
 					<a href="checkout.php" class="button">Reset</a></div>		
             </form>          
 			</li>
@@ -530,7 +529,7 @@ echo $current_url; ?>" />
                 <label for="password">Password</label>
               </div>
             </div>
-					<div colspan="5"><a href="confirm.php" class="button">Submit</a>
+					<div colspan="5"><button type="submit">Submit</button>
 					<a href="checkout.php" class="button">Reset</a></div>	
 				</form>
 			</li>
@@ -548,7 +547,7 @@ echo $current_url; ?>" />
 			</div>
 			</div>
 			</div>
-					<div colspan="5"><a href="confirm.php" class="button">Submit</a>
+					<div colspan="5"><button type="submit">Submit</button>
 					<a href="checkout.php" class="button">Reset</a></div>
 			</form>
         </li>
@@ -623,7 +622,7 @@ echo $current_url; ?>" />
 				</p>                           
 				</div>
 					
-					<div colspan="5"><a href="confirm.php" class="button">Submit</a>
+					<div colspan="5"><button type="submit">Submit</button>
 					<a href="checkout.php" class="button">Reset</a></div>	
             </form>            
 			</li>
